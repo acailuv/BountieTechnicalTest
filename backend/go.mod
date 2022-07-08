@@ -3,7 +3,9 @@ module main
 go 1.16
 
 require (
+	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
 	github.com/go-pg/pg/v10 v10.9.1
+	github.com/go-playground/validator/v10 v10.11.0
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/gorilla/mux v1.8.0
 	github.com/gorilla/websocket v1.4.2

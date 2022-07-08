@@ -28,27 +28,6 @@ services:
       interval: 1s
       timeout: 10s
       retries: 10
-  rabbitmq:
-    image: rabbitmq:3.6.1-management
-    ports:
-      - 5672:5672
-      - 15672:15672
-    volumes:
-      - rabbitmq_data:/var/lib/rabbitmq/
-      - rabbitmq_log:/var/log/rabbitmq/
-  redis:
-    image: redis:6.2-alpine
-    ports:
-      - 6379:6379
-    command: redis-server --save 20 1 --loglevel warning --requirepass your-redis-secret-password
-    volumes: 
-      - redis_data:/data
-  redis-commander:
-    image: rediscommander/redis-commander:latest
-    environment:
-    - REDIS_HOSTS=redis:redis:6379:0:your-redis-secret-password
-    ports:
-    - 8081:8081
   api:
     build: ./backend
     volumes:
@@ -57,24 +36,11 @@ services:
       - 8080:5000
     depends_on:
       - postgres
-      - rabbitmq
     environment:
-      - WAIT_HOSTS=rabbitmq:5672,postgres:5432,redis:6379
+      - WAIT_HOSTS=postgres:5432
       - WAIT_HOSTS_TIMEOUT=300
       - WAIT_SLEEP_INTERVAL=5
       - WAIT_HOST_CONNECT_TIMEOUT=30
-  frontend:
-    build:
-      context: ./frontend
-    environment:
-      ENV: development   # Choose one: development/production
-    volumes:
-      - ./frontend:/frontend
-    ports:
-      - 3000:3000
 
 volumes:
   postgres_data:
-  rabbitmq_data:
-  rabbitmq_log:
-  redis_data:

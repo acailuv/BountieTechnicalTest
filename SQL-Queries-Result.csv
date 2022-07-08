@@ -1,0 +1,3 @@
+﻿id,order_date,status,paid_at,grand_total,item_amount
+trx-0001,2022-07-08 12:48:02.427933,PAID,2022-07-08 12:48:02.427933,50000,3
+trx-0002,2022-07-08 12:48:02.427933,PENDING,,110000,3

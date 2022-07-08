@@ -1,33 +1,48 @@
-# Exordium
-**/ɪɡˈzɔːdɪəm/ - The Beginning of Anything.**
+# Bountie Technical Test
+Tecnical Test for Bountie
 
-## Introduction
-This repository includes all the tools you need to start your own industrial grade projects. This repository includes:
-- Golang (Back End)
-- ReactTS (Front End)
-- RabbitMQ (Message Broker)
-- Redis (Cache)
-- PostgreSQL (Database)
+## Prerequisites
+* Docker
+* Docker Compose
+* Go
 
-The front end uses `yarn` insteam of the regular `npm` for further dependability. Install [yarn](https://classic.yarnpkg.com/lang/en/docs/install/) first.
+## Notes
+Link for Longest Palindromic String Algorithm: [Via Goplay.Space](https://goplay.space/#4CieqYKd4h9)
 
-Unlike [GDRP](https://github.com/acailuv/GDRP), this repository will only provide minimum demo and tutorial since an advanced level knowledge of full-stack web application development is expected from the user of this repository. this demo will only act as a boilerplate code for further development.
+## Setup and Testing
+Do `docker-compose up` in the backend folder.
 
-## Pre-requisites
-This section will list out what you need to install before using this repository in your local development environment.
-- Install [Go](https://golang.org/doc/install).
-- Install [NodeJS](https://nodejs.org/en/download/).
-- Install [Docker](https://docs.docker.com/get-docker/).
-- Install [Docker Compose](https://docs.docker.com/compose/install/).
-- Install [golang-migrate](https://github.com/golang-migrate/migrate).
-    - You (might) need [Brew](https://brew.sh/).
+There are two endpoints that is exposed at `http://localhost:8080/`
+* `POST /decimal-binary`:
+```json
+// Request Body:
+{
+  "decimal": 3
+}
+```
+```json
+// Response:
+{
+  "is_success": true,
+  "status": 200,
+  "error": null,
+  "data": "1001"
+}
+```
+* `POST /longest-palindromic-string`:
+```json
+// Request Body:
+{
+  "query": "di rumah saya ada kasur rusak"
+}
+```
+```json
+// Response
+{
+  "is_success": true,
+  "status": 200,
+  "error": null,
+  "data": "kasur rusak"
+}
 
-## Basics
-This section will cover basic usage of this repo.
-- Starting Up Your Application:
-    - `docker-compose up` will start your application.
-- Makefile Macros:
-    - `make genearte-migration name=add_user_table` will generate migration files.
-    - `make run-migration-up database='postgres://root:your-secret-password@localhost:5432/app-db?sslmode=disable'` will run the migration (up).
-    - `make run-migration-down database=''postgres://root:root@localhost:5432/app-db?sslmode=disable'` will run the migration (down).
-    - **NOTE:** You might want to set your local database URL to your bash profile via `export` or something similar for extra convinience.
+```

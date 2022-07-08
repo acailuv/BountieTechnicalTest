@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS transactions(
+  id VARCHAR(255) PRIMARY KEY,
+  order_date TIMESTAMP NOT NULL,
+  status VARCHAR(255) NOT NULL,
+  paid_at TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS transaction_details(
+  id VARCHAR(255) PRIMARY KEY,
+  transaction_id VARCHAR(255) NOT NULL,
+  price NUMERIC NOT NULL,
+  amount NUMERIC NOT NULL,
+  subtotal NUMERIC NOT NULL
+);
